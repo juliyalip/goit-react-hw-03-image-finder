@@ -58,7 +58,7 @@ export default class ImageGallery extends Component {
         )}
 
         {images && (
-          <ul>
+          <ul className="ImageGallery">
             <ImageGalleryItem images={images} clickModal={this.toggleModal} />
           </ul>
         )}
