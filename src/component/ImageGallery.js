@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
@@ -15,6 +16,7 @@ export default class ImageGallery extends Component {
     loading: false,
     error: null,
     showModal: false,
+    imageSrc: "",
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -39,16 +41,19 @@ export default class ImageGallery extends Component {
           .then(({ hits }) => this.setState({ images: [...hits] }))
           .catch((error) => this.setState({ error }))
           .finally(() => this.setState({ loading: false }));
-      }, 2000);
+      }, 1000);
     }
   }
 
-  toggleModal = () => {
-    return this.setState((prevState) => ({ showModal: !prevState.showModal }));
+  toggleModal = (bigImage) => {
+    return this.setState((prevState) => ({
+      showModal: !prevState.showModal,
+      imageSrc: bigImage,
+    }));
   };
 
   render() {
-    const { loading, images, error, showModal } = this.state;
+    const { loading, images, error, showModal, imageSrc } = this.state;
 
     return (
       <>
@@ -65,7 +70,7 @@ export default class ImageGallery extends Component {
 
         {images.length > 0 && <Button />}
 
-        {showModal && <Modal clickModal={this.toggleModal} />}
+        {showModal && <Modal clickModal={this.toggleModal} url={imageSrc} />}
       </>
     );
   }

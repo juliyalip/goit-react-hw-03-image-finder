@@ -17,7 +17,6 @@ export default class App extends Component {
     return (
       <div className="App">
         <Searchbar onSubmit={this.handleFormSubmit} />
-        {/*<ImageGallery images={this.state.imagesName}/> */}
         <ImageGallery imageName={this.state.imageName} />{" "}
         {/*Прокинули через проп значение state*/}
         <ToastContainer autoClose={3000} />

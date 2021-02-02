@@ -185,6 +185,7 @@ li {
 * Стили компонента Buton (Load more)
 */
 .Button {
+  width: 80px;
   padding: 8px 16px;
   border-radius: 2px;
   background-color: #3f51b5;
@@ -208,8 +209,4 @@ li {
 .Button:hover,
 .Button:focus {
   background-color: #303f9f;
-}
-
-.load {
-  width: 100px;
 }
