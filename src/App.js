@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { ToastContainer } from "react-toastify";
+import PropTypes from "prop-types";
 
 import Searchbar from "./component/Searchbar";
 import ImageGallery from "./component/ImageGallery";
@@ -7,6 +8,10 @@ import ImageGallery from "./component/ImageGallery";
 export default class App extends Component {
   state = {
     imageName: "",
+  };
+
+  static propTypes = {
+    handleFormSubmit: PropTypes.func,
   };
 
   handleFormSubmit = (imageName) => {

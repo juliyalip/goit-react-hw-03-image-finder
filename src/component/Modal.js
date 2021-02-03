@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class Modal extends Component {
+  static propTypes = {
+    handleBackdropClick: PropTypes.func.isRequired,
+  };
+
   handleBackdropClick = (event) => {
     if (event.currentTarget === event.target) {
       this.props.clickModal();

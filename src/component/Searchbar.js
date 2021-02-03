@@ -1,9 +1,15 @@
 import { Component } from "react";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 export default class Searchbar extends Component {
   state = {
     imageName: "",
+  };
+
+  static propTypes = {
+    handleNameChange: PropTypes.func,
+    handleSubmit: PropTypes.func,
   };
 
   handleNameChange = (event) => {
