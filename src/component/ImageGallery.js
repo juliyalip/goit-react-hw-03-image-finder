@@ -6,9 +6,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import ImageGalleryItem from "./ImageGalleryItem";
 import Button from "./Batton";
 import Modal from "./Modal";
-
-const key = "19520072-2a079db9835241cceccf8dd5b";
-const page = 1;
+import imageAPI from "./FetchImage";
 
 export default class ImageGallery extends Component {
   state = {
@@ -17,31 +15,24 @@ export default class ImageGallery extends Component {
     error: null,
     showModal: false,
     imageSrc: "",
+    page: 1,
   };
 
   componentDidUpdate(prevProps, prevState) {
     const prevName = prevProps.imageName;
     const nextName = this.props.imageName;
-
+    const { page } = this.state;
     if (prevName !== nextName) {
       this.setState({
         loading: true,
         images: [],
       });
 
-      setTimeout(() => {
-        fetch(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${nextName}
-           &language=en&page=${page}&per_page=12&key=${key}`)
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
-            return Promise.reject(new Error(`Введите правельный запрос`));
-          })
-          .then(({ hits }) => this.setState({ images: [...hits] }))
-          .catch((error) => this.setState({ error }))
-          .finally(() => this.setState({ loading: false }));
-      }, 1000);
+      imageAPI
+        .fetchImage(nextName, page)
+        .then(({ hits }) => this.setState({ images: [...hits] }))
+        .catch((error) => this.setState({ error }))
+        .finally(() => this.setState({ loading: false }));
     }
   }
 
@@ -50,6 +41,17 @@ export default class ImageGallery extends Component {
       showModal: !prevState.showModal,
       imageSrc: bigImage,
     }));
+  };
+
+  incrementPage = () => {
+    imageAPI
+      .fetchImage(this.props.imageName, this.state.page)
+      .then(({ hits }) =>
+        this.setState((prevState) => ({
+          images: [...prevState.images, ...hits],
+          page: prevState.page + 1,
+        }))
+      );
   };
 
   render() {
@@ -68,7 +70,7 @@ export default class ImageGallery extends Component {
           </ul>
         )}
 
-        {images.length > 0 && <Button />}
+        {images.length > 0 && <Button onClickButton={this.incrementPage} />}
 
         {showModal && <Modal clickModal={this.toggleModal} url={imageSrc} />}
       </>
