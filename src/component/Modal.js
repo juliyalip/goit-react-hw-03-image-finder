@@ -6,8 +6,22 @@ export default class Modal extends Component {
     handleBackdropClick: PropTypes.func.isRequired,
   };
 
+  componentDidMount() {
+    window.addEventListener("keydown", this.handleKeyDown);
+  }
+
+  compponentWIllUnmount() {
+    window.removeEventListener("keydown", this.handleKeyDown);
+  }
+
   handleBackdropClick = (event) => {
     if (event.currentTarget === event.target) {
+      this.props.clickModal();
+    }
+  };
+
+  handleKeyDown = (e) => {
+    if (e.code === "Escape") {
       this.props.clickModal();
     }
   };

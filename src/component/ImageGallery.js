@@ -6,7 +6,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import ImageGalleryItem from "./ImageGalleryItem";
 import Button from "./Batton";
 import Modal from "./Modal";
-import imageAPI from "./FetchImage";
+import imageAPI from "./FetchImage/FetchImage";
 
 export default class ImageGallery extends Component {
   state = {
