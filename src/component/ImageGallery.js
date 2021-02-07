@@ -31,7 +31,12 @@ export default class ImageGallery extends Component {
 
       imageAPI
         .fetchImage(nextName, page)
-        .then(({ hits }) => this.setState({ images: [...hits] }))
+        .then(({ hits }) =>
+          this.setState({
+            images: [...hits],
+            page: page + 1,
+          })
+        )
         .catch((error) => this.setState({ error }))
         .finally(() => this.setState({ loading: false }));
     }
