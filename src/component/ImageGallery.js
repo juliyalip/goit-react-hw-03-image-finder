@@ -15,7 +15,7 @@ export default class ImageGallery extends Component {
     error: null,
     showModal: false,
     imageSrc: "",
-    page: 1,
+    page: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -26,6 +26,7 @@ export default class ImageGallery extends Component {
       this.setState({
         loading: true,
         images: [],
+        page: 1,
       });
 
       imageAPI
