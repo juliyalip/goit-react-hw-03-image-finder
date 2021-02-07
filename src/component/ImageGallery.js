@@ -15,7 +15,7 @@ export default class ImageGallery extends Component {
     error: null,
     showModal: false,
     imageSrc: "",
-    page: null,
+    page: 1,
   };
 
   componentDidUpdate(prevProps, prevState) {
