@@ -1,31 +1,11 @@
-import { Component } from "react";
-import { ToastContainer } from "react-toastify";
-import PropTypes from "prop-types";
+import React from "react";
 
-import Searchbar from "./component/Searchbar";
-import ImageGallery from "./component/ImageGallery";
+import Gallery from "./component/Gallery";
 
-export default class App extends Component {
-  state = {
-    imageName: "",
-  };
+const App = () => (
+  <div className="App">
+    <Gallery />
+  </div>
+);
 
-  static propTypes = {
-    handleFormSubmit: PropTypes.func,
-  };
-
-  handleFormSubmit = (imageName) => {
-    this.setState({ imageName });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <Searchbar onSubmit={this.handleFormSubmit} />
-        <ImageGallery imageName={this.state.imageName} />{" "}
-        {/*Прокинули через проп значение state*/}
-        <ToastContainer autoClose={3000} />
-      </div>
-    );
-  }
-}
+export default App;

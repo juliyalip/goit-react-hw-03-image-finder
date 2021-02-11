@@ -1,31 +1,25 @@
 import { Component } from "react";
-import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
-export default class Searchbar extends Component {
+export default class Form extends Component {
   state = {
-    imageName: "",
+    query: "",
   };
 
   static propTypes = {
-    handleNameChange: PropTypes.func,
+    handleChange: PropTypes.func,
     handleSubmit: PropTypes.func,
   };
 
-  handleNameChange = (event) => {
-    this.setState({ imageName: event.currentTarget.value.toLowerCase() });
+  handleChange = (e) => {
+    this.setState({ query: e.currentTarget.value });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    if (this.state.imageName.trim() === "") {
-      toast.error("Введите правельный запрос");
-      return;
-    }
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-    this.props.onSubmit(this.state.imageName);
-
-    this.setState({ imageName: "" });
+    this.props.onSubmit(this.state.query);
+    this.setState({ query: "" });
   };
 
   render() {
@@ -39,10 +33,10 @@ export default class Searchbar extends Component {
           <input
             className="SearchForm-input"
             type="text"
-            value={this.state.imageName}
+            value={this.state.query}
             name="imageName"
             placeholder="Search images and photos"
-            onChange={this.handleNameChange}
+            onChange={this.handleChange}
           />
         </form>
       </header>

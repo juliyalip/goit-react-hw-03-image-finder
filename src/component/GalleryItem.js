@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ImageGalleryItem = ({ images, clickModal }) =>
+const GalleryItem = ({ images, clickModal }) =>
   images.map(({ id, webformatURL, tags, largeImageURL }) => (
     <li key={id} className="ImageGalleryItem">
       <img
@@ -14,9 +14,9 @@ const ImageGalleryItem = ({ images, clickModal }) =>
     </li>
   ));
 
-ImageGalleryItem.propTypes = {
+GalleryItem.propTypes = {
   clickModal: PropTypes.func,
   images: PropTypes.array,
 };
 
-export default ImageGalleryItem;
+export default GalleryItem;
