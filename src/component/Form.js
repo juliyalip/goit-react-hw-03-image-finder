@@ -1,4 +1,5 @@
 import { Component } from "react";
+import IconSearch from "./Icon";
 import PropTypes from "prop-types";
 
 export default class Form extends Component {
@@ -27,7 +28,7 @@ export default class Form extends Component {
       <header className="Searchbar">
         <form className="SearchForm" onSubmit={this.handleSubmit}>
           <button type="submit" className="SearchForm-button">
-            <span className="SearchForm-button-label">Search</span>
+            <IconSearch />
           </button>
 
           <input
